@@ -258,7 +258,7 @@ function OptionsPrivate.MultipleDisplayTooltipMenu()
         local button = WeakAuras.GetDisplayButton(data.id);
         button.callbacks.UpdateExpandButton();
         WeakAuras.UpdateDisplayButton(data);
-        WeakAuras.SortDisplayButtons();
+        OptionsPrivate.SortDisplayButtons();
         button:Expand();
       end
     },
@@ -295,7 +295,7 @@ function OptionsPrivate.MultipleDisplayTooltipMenu()
         local button = WeakAuras.GetDisplayButton(data.id);
         button.callbacks.UpdateExpandButton();
         WeakAuras.UpdateDisplayButton(data);
-        WeakAuras.SortDisplayButtons();
+        OptionsPrivate.SortDisplayButtons();
         button:Expand();
         WeakAuras.PickDisplay(data.id);
       end
@@ -399,7 +399,7 @@ StaticPopupDialogs["WEAKAURAS_CONFIRM_DELETE"] = {
         end
       end
       OptionsPrivate.Private.ResumeAllDynamicGroups()
-      WeakAuras.SortDisplayButtons()
+      OptionsPrivate.SortDisplayButtons()
     end
   end,
   OnCancel = function(self)
@@ -438,7 +438,7 @@ end
 local function AfterScanForLoads()
   if(frame) then
     if (frame:IsVisible()) then
-      WeakAuras.SortDisplayButtons(nil, true);
+      OptionsPrivate.SortDisplayButtons(nil, true);
     else
       frame.needsSort = true;
     end
@@ -507,7 +507,7 @@ local function OnRename(event, uid, oldid, newid)
   end
 
   OptionsPrivate.SetGrouping()
-  WeakAuras.SortDisplayButtons()
+  OptionsPrivate.SortDisplayButtons()
   WeakAuras.PickDisplay(newid)
 end
 
@@ -654,7 +654,7 @@ local function LayoutDisplayButtons(msg)
 
     frame.buttonsScroll:ResumeLayout()
     frame.buttonsScroll:PerformLayout()
-    WeakAuras.SortDisplayButtons(msg);
+    OptionsPrivate.SortDisplayButtons(msg);
 
     OptionsPrivate.Private.PauseAllDynamicGroups();
     if (WeakAuras.IsOptionsOpen()) then
@@ -731,7 +731,7 @@ function WeakAuras.ShowOptions(msg)
   frame.buttonsScroll.frame:Show();
 
   if (frame.needsSort) then
-    WeakAuras.SortDisplayButtons();
+    OptionsPrivate.SortDisplayButtons();
     frame.needsSort = nil;
   end
 
@@ -841,7 +841,7 @@ function OptionsPrivate.ConvertDisplay(data, newType)
   WeakAuras.UpdateDisplayButton(data);
   WeakAuras.SetMoverSizer(id)
   OptionsPrivate.ResetMoverSizer();
-  WeakAuras.SortDisplayButtons()
+  OptionsPrivate.SortDisplayButtons()
 end
 
 function WeakAuras.NewDisplayButton(data, massEdit)
@@ -851,7 +851,7 @@ function WeakAuras.NewDisplayButton(data, massEdit)
   WeakAuras.UpdateDisplayButton(db.displays[id]);
   frame.buttonsScroll:AddChild(displayButtons[id]);
   if not massEdit then
-    WeakAuras.SortDisplayButtons()
+    OptionsPrivate.SortDisplayButtons()
   end
 end
 
@@ -871,7 +871,7 @@ function OptionsPrivate.UpdateButtonsScroll()
 end
 
 local previousFilter;
-function WeakAuras.SortDisplayButtons(filter, overrideReset, id)
+function OptionsPrivate.SortDisplayButtons(filter, overrideReset, id)
   if (OptionsPrivate.Private.IsOptionsProcessingPaused()) then
     return;
   end

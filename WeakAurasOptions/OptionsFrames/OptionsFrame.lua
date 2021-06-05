@@ -541,7 +541,7 @@ function OptionsPrivate.CreateFrame()
   -- filter line
   local filterInput = CreateFrame("editbox", "WeakAurasFilterInput", frame, "InputBoxTemplate")
   filterInput:SetAutoFocus(false)
-  filterInput:SetScript("OnTextChanged", function(...) WeakAuras.SortDisplayButtons(filterInput:GetText()) end)
+  filterInput:SetScript("OnTextChanged", function(...) OptionsPrivate.SortDisplayButtons(filterInput:GetText()) end)
   filterInput:SetScript("OnEnterPressed", function(...) filterInput:ClearFocus() end)
   filterInput:SetScript("OnEscapePressed", function(...) filterInput:SetText("") filterInput:ClearFocus() end)
   filterInput:SetHeight(15)
@@ -739,7 +739,7 @@ function OptionsPrivate.CreateFrame()
     else
       odb.loadedCollapse = true
     end
-    WeakAuras.SortDisplayButtons()
+    OptionsPrivate.SortDisplayButtons()
   end)
   loadedButton:SetExpandDescription(L["Expand all loaded displays"])
   loadedButton:SetCollapseDescription(L["Collapse all loaded displays"])
@@ -798,7 +798,7 @@ function OptionsPrivate.CreateFrame()
     else
       odb.unloadedCollapse = true
     end
-    WeakAuras.SortDisplayButtons()
+    OptionsPrivate.SortDisplayButtons()
   end)
   unloadedButton:SetExpandDescription(L["Expand all non-loaded displays"])
   unloadedButton:SetCollapseDescription(L["Collapse all non-loaded displays"])
