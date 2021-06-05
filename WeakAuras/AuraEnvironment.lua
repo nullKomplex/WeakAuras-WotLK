@@ -325,7 +325,6 @@ local FakeWeakAurasMixin = {
     CloseCodeReview = true,
     CloseImportExport = true,
     CreateTemplateView = true,
-    DisplayToString = true,
     FillOptions = true,
     FindUnusedId = true,
     GetMoverSizerId = true,
